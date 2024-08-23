@@ -1,7 +1,4 @@
-import 'dart:math';
-
-// TODO: Implement the Song class
-class Song {
+class Song { // add class song for encoding of all songs
   List<Map<String, dynamic>> songs = [
     {'title': 'Born to Win', 'singer': 'BINI', 'minutes': '03', 'second': '30'},
     {
@@ -13,13 +10,13 @@ class Song {
     {'title': 'Na Na Na', 'singer': 'BINI', 'minutes': '03', 'second': '45'},
     {'title': 'Kapit', 'singer': 'BINI', 'minutes': '03', 'second': '00'},
     {'title': 'Lagi', 'singer': 'BINI', 'minutes': '03', 'second': '20'},
-  ]; //list all
+  ]; // Initializing All songs
 
-  void listSongs() {
-    if (songs.isNotEmpty) {
-      sortByArtist();
+  void listSongs() { // initialized this function to add songs
+    if (songs.isNotEmpty) { // validation pag walang laman
+      sortByArtist(); // recall sorting of song before printing
 
-      for (var song in songs) {
+      for (var song in songs) { //looping of all songs
         print(song['title'] +
             ' by ' +
             song['singer'] +
@@ -27,19 +24,19 @@ class Song {
             song['minutes'] +
             ':' +
             song['second'] +
-            ')');
+            ')'); // print song nag contatenate nadin ako sir para sa mga keys dun sa list
       }
-    } else {
-      print("Playlists Empty");
+    } else { // catcher pag walang laman
+      print("Playlists Empty"); // to let user know na wala sialang playlist
     }
   }
 
-  void sortByArtist() {
-    songs.sort((a, b) => a['title'].compareTo(b['title']));
+  void sortByArtist() { // class para pang sort void sya kasi walang irereturn 
+    songs.sort((a, b) => a['title'].compareTo(b['title'])); // pang sort ng map by value of specific key
   }
 
-  int durationConversion(int minutes, int seconds) {
-    return ((minutes * 60) + seconds);
+  int durationConversion(int minutes, int seconds) { // method na mag hahandle ng conversion ng duration
+    return ((minutes * 60) + seconds); // pang convert ng minute and pag add  ng seconds
   }
 }
 
@@ -50,28 +47,36 @@ class Playlist {
 }
 
 // TODO: Implement the MusicFestival class
-class MusicFestival {
-  Song song = new Song();
-  int getTotalDuration(arr) {
-    int totalDuration = 0;
+class MusicFestival { // pang handle ng ibang logic para sa music fest
+  Song song = new Song(); // redeclaration of Song class
+  int getTotalDuration(arr) { // method pang kuha ng total festival duration
+    int totalDuration = 0; //initialize total duration to 0
 
-    arr.forEach((item) {
+    arr.forEach((item) { //looping of all songs 
       int totalsecond = song.durationConversion(
-          int.parse(item['minutes']), int.parse(item['second']));
-      totalDuration += totalsecond;
+          int.parse(item['minutes']), int.parse(item['second'])); // call ng conversion to secong from song class
+      totalDuration += totalsecond; //adding of total seconds to total duration
     });
-    return totalDuration;
+    return totalDuration; //return output
   }
   // Properties, constructor, and methods go here
 }
 
 void main() {
-  Song song = new Song();
-  MusicFestival musicFest = MusicFestival();
+  Song song = new Song(); // recalling Song Class and assign to song variable
+  MusicFestival musicFest = MusicFestival(); // recalling Music Festival Class and assign to musicFest variable
+  
   print('Total Festival Duration: ' +
-      (musicFest.getTotalDuration(song.songs).toString()));
-  print('\n');
+      (musicFest.getTotalDuration(song.songs).toString()) + ' seconds'); // printing of total duration (seconds)
+  
+  print('\nRandom Songs:'); //printing ng random songs title
+
+  print('\n'); //new line before listing of allsong
+  print('Main Stage playlist:'); // display title
+  print('Playlist Main Stage:'); //display chosen playlist
   song.listSongs();
+
+  // Your code to test the classes goes here
 //   print('Welcome to the Music Festival Playlist Manager!');
 //   print(Song);
   // Create and manipulate objects here
